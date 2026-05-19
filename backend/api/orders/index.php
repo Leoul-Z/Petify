@@ -4,14 +4,11 @@ require_once __DIR__ . '/../../bootstrap.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-// ─── POST: create order (auth + buyer role required) ──────────────────────────
 if ($method === 'POST') {
-    // Require authentication
     if (empty($_SESSION['user_id'])) {
         json_response(['error' => 'Unauthenticated'], 401);
     }
 
-    // Require buyer role
     if (($_SESSION['role'] ?? '') !== 'buyer') {
         json_response(['error' => 'Forbidden'], 403);
     }
@@ -25,7 +22,6 @@ if ($method === 'POST') {
 
     $pdo = get_db();
 
-    // Fetch the listing
     $stmt = $pdo->prepare('SELECT * FROM listings WHERE id = ?');
     $stmt->execute([$listing_id]);
     $listing = $stmt->fetch();
@@ -38,14 +34,12 @@ if ($method === 'POST') {
         json_response(['error' => 'Listing is not available'], 400);
     }
 
-    // Simulate payment — always succeeds unless ?fail=1 is passed (for testing)
     $payment_success = !(isset($_GET['fail']) && $_GET['fail'] === '1');
 
     if (!$payment_success) {
         json_response(['ok' => false, 'error' => 'Payment failed']);
     }
 
-    // Generate UUID v4
     $order_id = sprintf(
         '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         mt_rand(0, 0xffff), mt_rand(0, 0xffff),
@@ -55,7 +49,6 @@ if ($method === 'POST') {
         mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
     );
 
-    // Insert order
     $stmt = $pdo->prepare(
         'INSERT INTO orders (id, buyer_id, seller_id, listing_id, pet_name, price_usd, status)
          VALUES (?, ?, ?, ?, ?, ?, \'confirmed\')'
@@ -69,11 +62,9 @@ if ($method === 'POST') {
         $listing['price_usd'],
     ]);
 
-    // Mark listing as sold
     $stmt = $pdo->prepare("UPDATE listings SET status = 'sold' WHERE id = ?");
     $stmt->execute([$listing_id]);
 
-    // Return the created order
     $stmt = $pdo->prepare('SELECT * FROM orders WHERE id = ?');
     $stmt->execute([$order_id]);
     $order = $stmt->fetch();
@@ -81,14 +72,11 @@ if ($method === 'POST') {
     json_response($order, 201);
 }
 
-// ─── GET: buyer's order history (auth + buyer role required) ──────────────────
 if ($method === 'GET') {
-    // Require authentication
     if (empty($_SESSION['user_id'])) {
         json_response(['error' => 'Unauthenticated'], 401);
     }
 
-    // Require buyer role
     if (($_SESSION['role'] ?? '') !== 'buyer') {
         json_response(['error' => 'Forbidden'], 403);
     }
@@ -108,5 +96,4 @@ if ($method === 'GET') {
     json_response($orders);
 }
 
-// ─── Method not allowed ────────────────────────────────────────────────────────
 json_response(['error' => 'Method not allowed'], 405);
