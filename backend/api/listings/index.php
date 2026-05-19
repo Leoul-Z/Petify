@@ -4,7 +4,6 @@ require_once __DIR__ . '/../../bootstrap.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-// ─── GET: public listing search ───────────────────────────────────────────────
 if ($method === 'GET') {
     $pdo = get_db();
 
@@ -47,7 +46,6 @@ if ($method === 'GET') {
     json_response($listings);
 }
 
-// ─── POST: create listing (auth + seller role required) ───────────────────────
 if ($method === 'POST') {
     // Require authentication
     if (empty($_SESSION['user_id'])) {
@@ -72,9 +70,8 @@ if ($method === 'POST') {
     $age_months  = $body['age_months']  ?? null;
     $price_usd   = $body['price_usd']   ?? null;
     $description = trim($body['description'] ?? '');
-    $photo_url   = $body['photo_url']   ?? '';  // do NOT trim — base64 must not be modified
-
-    // Validate required fields
+    $photo_url   = $body['photo_url']   ?? '';  
+    
     $errors = [];
 
     if ($name === '') {
@@ -105,7 +102,6 @@ if ($method === 'POST') {
         json_response(['errors' => $errors], 422);
     }
 
-    // Generate UUID v4
     $uuid = sprintf(
         '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         mt_rand(0, 0xffff), mt_rand(0, 0xffff),
@@ -133,7 +129,6 @@ if ($method === 'POST') {
         $photo_url   !== '' ? $photo_url   : null,
     ]);
 
-    // Return the created listing
     $stmt = $pdo->prepare('SELECT * FROM listings WHERE id = ?');
     $stmt->execute([$uuid]);
     $listing = $stmt->fetch();
@@ -141,6 +136,5 @@ if ($method === 'POST') {
     json_response($listing, 201);
 }
 
-// ─── Method not allowed ────────────────────────────────────────────────────────
 json_response(['error' => 'Method not allowed'], 405);
 
