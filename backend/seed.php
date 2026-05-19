@@ -18,7 +18,7 @@ $pdo = get_db();
 
 echo "Seeding Petify database...\n\n";
 
-// ─── Helper: generate UUID v4 ─────────────────────────────────────────────────
+//  Helper: generate UUID v4 
 function uuid(): string {
     return sprintf(
         '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
@@ -30,7 +30,7 @@ function uuid(): string {
     );
 }
 
-// ─── Seller users ─────────────────────────────────────────────────────────────
+//  Seller users 
 $sellers = [
     [
         'id'        => uuid(),
@@ -60,7 +60,8 @@ foreach ($sellers as $seller) {
 
 echo "\n";
 
-// ─── Sample listings ──────────────────────────────────────────────────────────
+//  Sample listings 
+
 $listings = [
     [
         'id'          => uuid(),
