@@ -1,6 +1,5 @@
 -- Petify Marketplace Database Schema
--- Run this file against your MySQL instance to set up the database:
---   mysql -u root -p < backend/schema.sql
+
 
 CREATE DATABASE IF NOT EXISTS petify
   CHARACTER SET utf8mb4
@@ -8,23 +7,17 @@ CREATE DATABASE IF NOT EXISTS petify
 
 USE petify;
 
--- -------------------------------------------------------
--- users
--- -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS users (
   id         CHAR(36)                    NOT NULL,
   full_name  VARCHAR(255)                NOT NULL,
   email      VARCHAR(255)                NOT NULL,
-  password   VARCHAR(255)                NOT NULL,  -- bcrypt hash
+  password   VARCHAR(255)                NOT NULL,  
   role       ENUM('buyer','seller')      NOT NULL,
   created_at DATETIME                    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_users_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -------------------------------------------------------
--- listings
--- -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS listings (
   id          CHAR(36)                          NOT NULL,
   seller_id   CHAR(36)                          NOT NULL,
@@ -43,9 +36,8 @@ CREATE TABLE IF NOT EXISTS listings (
     ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -------------------------------------------------------
--- orders
--- -------------------------------------------------------
+
+
 CREATE TABLE IF NOT EXISTS orders (
   id          CHAR(36)                          NOT NULL,
   buyer_id    CHAR(36)                          NOT NULL,
