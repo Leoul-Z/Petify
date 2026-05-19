@@ -11,7 +11,6 @@ if ($id === '') {
 
 $pdo = get_db();
 
-// ─── GET: public single listing ───────────────────────────────────────────────
 if ($method === 'GET') {
     $stmt = $pdo->prepare('SELECT * FROM listings WHERE id = ?');
     $stmt->execute([$id]);
@@ -24,7 +23,6 @@ if ($method === 'GET') {
     json_response($listing);
 }
 
-// ─── PUT: update listing (auth + owner only) ──────────────────────────────────
 if ($method === 'PUT') {
     // Require authentication
     if (empty($_SESSION['user_id'])) {
@@ -52,7 +50,7 @@ if ($method === 'PUT') {
     $age_months  = isset($body['age_months'])  ? $body['age_months']        : $listing['age_months'];
     $price_usd   = isset($body['price_usd'])   ? $body['price_usd']         : $listing['price_usd'];
     $description = isset($body['description']) ? trim($body['description']) : $listing['description'];
-    $photo_url   = isset($body['photo_url'])   ? $body['photo_url']         : $listing['photo_url']; // no trim on base64
+    $photo_url   = isset($body['photo_url'])   ? $body['photo_url']         : $listing['photo_url'];
 
     $stmt = $pdo->prepare(
         'UPDATE listings
@@ -79,7 +77,6 @@ if ($method === 'PUT') {
     json_response($updated);
 }
 
-// ─── DELETE: soft-delete listing (auth + owner only) ──────────────────────────
 if ($method === 'DELETE') {
     // Require authentication
     if (empty($_SESSION['user_id'])) {
@@ -98,11 +95,9 @@ if ($method === 'DELETE') {
         json_response(['error' => 'Forbidden'], 403);
     }
 
-    // Soft-delete the listing
     $stmt = $pdo->prepare("UPDATE listings SET status = 'deleted' WHERE id = ?");
     $stmt->execute([$id]);
 
-    // Cancel any confirmed (unpaid) orders for this listing
     $stmt = $pdo->prepare(
         "UPDATE orders SET status = 'cancelled' WHERE listing_id = ? AND status = 'confirmed'"
     );
@@ -111,6 +106,5 @@ if ($method === 'DELETE') {
     json_response(['message' => 'Listing deleted']);
 }
 
-// ─── Method not allowed ────────────────────────────────────────────────────────
 json_response(['error' => 'Method not allowed'], 405);
 
