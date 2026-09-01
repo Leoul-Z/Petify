@@ -1,0 +1,137 @@
+.navbar-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(253, 245, 237, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(72, 46, 29, 0.05);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.navbar-logo {
+  color: #8D4F33;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navbar-link {
+  font-weight: 600;
+  color: #482E1D;
+  text-decoration: none;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #8D4F33;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 50%;
+  background-color: #8D4F33;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+.navbar-auth {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navbar-login-btn {
+  font-weight: 600;
+  color: #482E1D;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.navbar-login-btn:hover {
+  color: #8D4F33;
+}
+
+.navbar-register-btn {
+  font-weight: 600;
+  color: #FDF5ED;
+  background-color: #8D4F33;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 24px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(141, 79, 51, 0.2);
+}
+
+.navbar-register-btn:hover {
+  background-color: #6b3a24;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(141, 79, 51, 0.3);
+}
+
+.navbar-user-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar-greeting {
+  font-weight: 600;
+  color: #482E1D;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.navbar-logout-btn {
+  background: none;
+  border: 1px solid #e0d5cc;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: #482E1D;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.navbar-logout-btn:hover {
+  background-color: #F8ECE2;
+  border-color: #d4c4b5;
+  color: #8D4F33;
+}

@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Route all /api/auth/* requests
+RewriteRule ^api/auth/(.+)$ api/auth/$1 [L]
+
+# Route all /api/listings/* requests
+RewriteRule ^api/listings/(.+)$ api/listings/$1 [L]
+
+# Route all /api/orders/* requests
+RewriteRule ^api/orders/(.+)$ api/orders/$1 [L]

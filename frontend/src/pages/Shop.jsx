@@ -10,7 +10,7 @@ const styles = {
     flexDirection: 'column',
     backgroundColor: '#FDF5ED',
     color: '#482E1D',
-    fontFamily: 'monospace',
+    fontFamily: 'system-ui, sans-serif',
   },
   main: {
     flex: 1,
@@ -44,7 +44,8 @@ const styles = {
     borderRadius: '15px',
     border: '1px solid #e0d5cc',
     padding: '15px 10px',
-    width: '90%',
+    width: '100%',
+    boxSizing: 'border-box',
     fontSize: 'large',
     backgroundColor: '#ffffff',
     color: '#482E1D',

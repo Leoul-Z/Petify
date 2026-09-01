@@ -12,7 +12,7 @@ const styles = {
   image: {
     borderRadius: '10px',
     width: '100%',
-    height: '50%',
+    height: '160px',
     objectFit: 'cover',
   },
   placeholder: {

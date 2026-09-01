@@ -4,17 +4,14 @@ import { useAuth } from '../context/AuthContext'
 
 const styles = {
   overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backdropFilter: 'blur(8px)',
-    background: 'rgba(0,0,0,0.3)',
+    minHeight: 'calc(100vh - 65px)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'monospace',
+    backgroundColor: '#FDF5ED',
+    fontFamily: 'system-ui, sans-serif',
+    padding: '40px 20px',
+    boxSizing: 'border-box',
   },
   box: {
     background: '#fff',
@@ -32,25 +29,27 @@ const styles = {
     fontSize: '28px',
   },
   input: {
-    padding: '10px',
+    padding: '12px 16px',
     background: '#FDF5ED',
-    border: 'none',
+    border: '1px solid #e0d5cc',
     borderRadius: '10px',
-    width: '70%',
-    fontFamily: 'monospace',
+    width: '100%',
+    boxSizing: 'border-box',
+    fontFamily: 'inherit',
     fontSize: '14px',
     outline: 'none',
   },
   button: {
     background: '#8D4F33',
     color: '#FDF5ED',
-    borderRadius: '7px',
+    borderRadius: '10px',
     border: 'none',
-    padding: '10px',
-    width: '70%',
+    padding: '12px',
+    width: '100%',
     cursor: 'pointer',
-    fontFamily: 'monospace',
+    fontFamily: 'inherit',
     fontSize: '14px',
+    fontWeight: 'bold',
   },
   error: {
     color: 'red',
@@ -103,7 +102,7 @@ export default function Login() {
 
         <form
           onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%', maxWidth: '280px' }}
         >
           <input
             style={styles.input}

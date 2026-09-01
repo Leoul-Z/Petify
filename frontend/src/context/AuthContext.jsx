@@ -7,7 +7,9 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(undefined) // undefined = loading, null = not logged in
 
   useEffect(() => {
-    getMe().then(setUser)
+    getMe()
+      .then(setUser)
+      .catch(() => setUser(null))
   }, [])
 
   async function login(data) {
