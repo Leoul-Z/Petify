@@ -339,7 +339,7 @@ export default function Dashboard() {
   }
 
   function formatPrice(price) {
-    return `$${Number(price).toFixed(2)}`
+    return `Br ${Number(price).toFixed(2)}`
   }
 
   return (
@@ -436,7 +436,7 @@ export default function Dashboard() {
 
             {/* Price */}
             <label style={styles.label}>
-              Price (USD) *
+              Price (Br) *
               <input
                 style={styles.input}
                 type="number"

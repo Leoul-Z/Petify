@@ -192,7 +192,7 @@ export default function Shop() {
           <input
             style={styles.priceInput}
             type="number"
-            placeholder="Min $"
+            placeholder="Min Br"
             value={minPrice}
             min="0"
             onChange={(e) => setMinPrice(e.target.value)}
@@ -201,7 +201,7 @@ export default function Shop() {
           <input
             style={styles.priceInput}
             type="number"
-            placeholder="Max $"
+            placeholder="Max Br"
             value={maxPrice}
             min="0"
             onChange={(e) => setMaxPrice(e.target.value)}

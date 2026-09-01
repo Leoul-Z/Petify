@@ -104,7 +104,7 @@ export default function ListingCard({ listing }) {
         </div>
 
         <div style={styles.both}>
-          <span style={styles.price}>${price_usd}</span>
+          <span style={styles.price}>Br {price_usd}</span>
           <button style={styles.arrowButton} onClick={handleButtonClick} aria-label={`View ${name}`}>
             <svg
               width="20"

@@ -1,4 +1,5 @@
-const BASE = '/api/orders'
+const API = import.meta.env.VITE_API_BASE || ''
+const BASE = `${API}/api/orders`
 
 export async function createOrder(listingId) {
   const res = await fetch(`${BASE}/index.php`, {

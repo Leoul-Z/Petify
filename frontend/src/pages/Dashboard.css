@@ -1,0 +1,354 @@
+.dash-page {
+  background-color: #FDF5ED;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #482E1D;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+.dash-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #e8ddd5;
+}
+
+.dash-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #482E1D;
+  margin: 0;
+}
+
+.dash-welcome {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8D4F33;
+  background: rgba(141, 79, 51, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(141, 79, 51, 0.15);
+}
+
+/* ── Section ── */
+.dash-section {
+  margin-bottom: 56px;
+}
+
+.dash-section-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: #482E1D;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-section-heading::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, #8D4F33, transparent);
+  border-radius: 2px;
+}
+
+/* ── Form card ── */
+.dash-form-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(72, 46, 29, 0.07);
+  border: 1px solid #f0e6db;
+}
+
+.dash-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.dash-form-full {
+  grid-column: 1 / -1;
+}
+
+.dash-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #482E1D;
+}
+
+.dash-input,
+.dash-select-input,
+.dash-textarea {
+  padding: 11px 14px;
+  background: #FDF5ED;
+  border: 1.5px solid #e0d5cc;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #482E1D;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dash-input:focus,
+.dash-select-input:focus,
+.dash-textarea:focus {
+  border-color: #8D4F33;
+  box-shadow: 0 0 0 3px rgba(141, 79, 51, 0.1);
+}
+
+.dash-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.dash-file-input {
+  padding: 8px;
+  background: #FDF5ED;
+  border: 1.5px dashed #c9b49a;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #482E1D;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.dash-file-input:hover {
+  border-color: #8D4F33;
+}
+
+.dash-photo-preview {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 2px solid #e0d5cc;
+}
+
+.dash-char-count {
+  font-size: 11px;
+  color: #8D4F33;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.dash-field-error {
+  color: #c0392b;
+  font-size: 11px;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.dash-general-error {
+  color: #c0392b;
+  font-size: 13px;
+  margin-bottom: 4px;
+  grid-column: 1 / -1;
+  background: #fdf0f0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #f5c2c2;
+}
+
+/* ── Form actions ── */
+.dash-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.dash-submit-btn {
+  background: #8D4F33;
+  color: #FDF5ED;
+  border-radius: 10px;
+  border: none;
+  padding: 11px 28px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(141, 79, 51, 0.2);
+}
+
+.dash-submit-btn:hover:not(:disabled) {
+  background: #6b3a24;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(141, 79, 51, 0.3);
+}
+
+.dash-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dash-cancel-btn {
+  background: transparent;
+  color: #8D4F33;
+  border: 1.5px solid #c9b49a;
+  border-radius: 10px;
+  padding: 11px 24px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.dash-cancel-btn:hover {
+  background: #FDF5ED;
+  border-color: #8D4F33;
+}
+
+/* ── Table ── */
+.dash-table-wrap {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(72, 46, 29, 0.06);
+  border: 1px solid #f0e6db;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dash-table thead tr {
+  background: linear-gradient(135deg, #8D4F33, #a05c3c);
+}
+
+.dash-table th {
+  color: #FDF5ED;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.dash-table tbody tr {
+  border-bottom: 1px solid #f5ede5;
+  transition: background 0.15s ease;
+}
+
+.dash-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.dash-table tbody tr:hover {
+  background: #fdf8f4;
+}
+
+.dash-table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+  color: #482E1D;
+}
+
+/* ── Thumbnail ── */
+.dash-thumbnail {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #e0d5cc;
+}
+
+.dash-thumbnail-placeholder {
+  width: 52px;
+  height: 52px;
+  background: #e8ddd5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* ── Status badge ── */
+.dash-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.dash-badge-active  { background: #d4edda; color: #155724; }
+.dash-badge-sold    { background: #fff3cd; color: #856404; }
+.dash-badge-deleted { background: #f8d7da; color: #721c24; }
+.dash-badge-confirmed { background: #d4edda; color: #155724; }
+.dash-badge-cancelled { background: #f8d7da; color: #721c24; }
+.dash-badge-default { background: #e2e3e5; color: #383d41; }
+
+/* ── Action buttons ── */
+.dash-edit-btn {
+  background: #8D4F33;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+}
+
+.dash-edit-btn:hover {
+  background: #6b3a24;
+  transform: translateY(-1px);
+}
+
+.dash-delete-btn {
+  background: transparent;
+  color: #c0392b;
+  border: 1.5px solid #f5c2c2;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.dash-delete-btn:hover {
+  background: #fdf0f0;
+  border-color: #c0392b;
+}
+
+/* ── Empty / loading state ── */
+.dash-empty {
+  color: #8D4F33;
+  font-style: italic;
+  padding: 20px 0;
+  opacity: 0.7;
+}

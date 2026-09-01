@@ -1,5 +1,6 @@
-# Environment variables — never commit this
+# Environment variables — never commit these
 backend/.env
+frontend/.env
 
 # Frontend
 frontend/node_modules/

@@ -1,4 +1,5 @@
-const BASE = '/api/listings'
+const API = import.meta.env.VITE_API_BASE || ''
+const BASE = `${API}/api/listings`
 
 export async function getListings(filters = {}) {
   const params = new URLSearchParams()

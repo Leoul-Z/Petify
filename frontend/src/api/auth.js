@@ -1,4 +1,5 @@
-const BASE = '/api/auth'
+const API = import.meta.env.VITE_API_BASE || ''
+const BASE = `${API}/api/auth`
 
 export async function register(data) {
   const res = await fetch(`${BASE}/register.php`, {

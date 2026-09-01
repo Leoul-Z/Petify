@@ -88,7 +88,7 @@ function formatDate(dateStr) {
 }
 
 function formatPrice(price) {
-  return `$${Number(price).toFixed(2)}`
+  return `Br ${Number(price).toFixed(2)}`
 }
 
 export default function OrderHistory() {

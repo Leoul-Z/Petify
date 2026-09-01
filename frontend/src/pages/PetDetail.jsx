@@ -341,7 +341,7 @@ export default function PetDetail() {
         </div>
 
         {/* Price */}
-        <p style={styles.price}>${Number(listing.price_usd).toFixed(2)}</p>
+        <p style={styles.price}>Br {Number(listing.price_usd).toFixed(2)}</p>
 
         {/* Description */}
         {listing.description && (
@@ -393,14 +393,14 @@ export default function PetDetail() {
             </div>
             <div style={styles.modalRow}>
               <span>Price</span>
-              <span>${Number(listing.price_usd).toFixed(2)}</span>
+              <span>Br {Number(listing.price_usd).toFixed(2)}</span>
             </div>
 
             <div style={styles.modalDivider} />
 
             <div style={styles.modalTotal}>
               <span>Total</span>
-              <span>${Number(listing.price_usd).toFixed(2)}</span>
+              <span>Br {Number(listing.price_usd).toFixed(2)}</span>
             </div>
 
             {orderError && (
