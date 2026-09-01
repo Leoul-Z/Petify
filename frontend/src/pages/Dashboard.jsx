@@ -3,192 +3,7 @@ import { useAuth } from '../context/AuthContext'
 import { getListings, createListing, updateListing, deleteListing } from '../api/listings'
 import { getSellerOrders } from '../api/orders'
 import Footer from '../components/Footer'
-
-const styles = {
-  page: {
-    backgroundColor: '#FDF5ED',
-    minHeight: '100vh',
-    fontFamily: 'monospace',
-    color: '#482E1D',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  main: {
-    flex: 1,
-    padding: '30px 40px',
-  },
-  sectionHeading: {
-    color: '#482E1D',
-    fontFamily: 'monospace',
-    fontSize: '22px',
-    marginBottom: '16px',
-    borderBottom: '2px solid #8D4F33',
-    paddingBottom: '8px',
-  },
-  section: {
-    marginBottom: '48px',
-  },
-  form: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '14px',
-    maxWidth: '800px',
-  },
-  formFullRow: {
-    gridColumn: '1 / -1',
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '4px',
-    fontSize: '13px',
-    color: '#482E1D',
-  },
-  input: {
-    padding: '10px',
-    background: '#FDF5ED',
-    border: '1px solid #c9b49a',
-    borderRadius: '10px',
-    fontFamily: 'monospace',
-    fontSize: '14px',
-    color: '#482E1D',
-    outline: 'none',
-  },
-  textarea: {
-    padding: '10px',
-    background: '#FDF5ED',
-    border: '1px solid #c9b49a',
-    borderRadius: '10px',
-    fontFamily: 'monospace',
-    fontSize: '14px',
-    color: '#482E1D',
-    outline: 'none',
-    resize: 'vertical',
-    minHeight: '80px',
-  },
-  fileInput: {
-    padding: '6px',
-    background: '#FDF5ED',
-    border: '1px solid #c9b49a',
-    borderRadius: '10px',
-    fontFamily: 'monospace',
-    fontSize: '13px',
-    color: '#482E1D',
-    cursor: 'pointer',
-  },
-  submitBtn: {
-    background: '#8D4F33',
-    color: '#FDF5ED',
-    borderRadius: '7px',
-    border: 'none',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    fontFamily: 'monospace',
-    fontSize: '14px',
-    alignSelf: 'flex-start',
-  },
-  cancelBtn: {
-    background: '#aaa',
-    color: '#fff',
-    borderRadius: '7px',
-    border: 'none',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    fontFamily: 'monospace',
-    fontSize: '14px',
-    alignSelf: 'flex-start',
-    marginLeft: '10px',
-  },
-  fieldError: {
-    color: '#c0392b',
-    fontSize: '11px',
-    marginTop: '2px',
-  },
-  generalError: {
-    color: '#c0392b',
-    fontSize: '13px',
-    marginBottom: '10px',
-    gridColumn: '1 / -1',
-  },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    fontSize: '13px',
-  },
-  th: {
-    backgroundColor: '#8D4F33',
-    color: '#FDF5ED',
-    padding: '10px',
-    textAlign: 'left',
-  },
-  tdEven: {
-    padding: '10px',
-    backgroundColor: '#FDF5ED',
-    verticalAlign: 'middle',
-  },
-  tdOdd: {
-    padding: '10px',
-    backgroundColor: '#ffffff',
-    verticalAlign: 'middle',
-  },
-  thumbnail: {
-    width: '50px',
-    height: '50px',
-    objectFit: 'cover',
-    borderRadius: '6px',
-  },
-  thumbnailPlaceholder: {
-    width: '50px',
-    height: '50px',
-    background: '#e0cfc0',
-    borderRadius: '6px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '10px',
-    color: '#8D4F33',
-  },
-  editBtn: {
-    background: '#8D4F33',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    padding: '6px 12px',
-    cursor: 'pointer',
-    fontFamily: 'monospace',
-    fontSize: '12px',
-    marginRight: '6px',
-  },
-  deleteBtn: {
-    background: '#c0392b',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    padding: '6px 12px',
-    cursor: 'pointer',
-    fontFamily: 'monospace',
-    fontSize: '12px',
-  },
-  emptyMsg: {
-    color: '#8D4F33',
-    fontStyle: 'italic',
-    padding: '16px 0',
-  },
-  photoPreview: {
-    width: '80px',
-    height: '80px',
-    objectFit: 'cover',
-    borderRadius: '8px',
-    marginTop: '6px',
-    border: '1px solid #c9b49a',
-  },
-  formActions: {
-    gridColumn: '1 / -1',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0',
-  },
-}
+import './Dashboard.css'
 
 const EMPTY_FORM = {
   name: '',
@@ -343,315 +158,280 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={styles.page}>
-      <div style={styles.main}>
-        <h1 style={{ color: '#482E1D', fontFamily: 'monospace', marginBottom: '32px' }}>
-          Seller Dashboard
+    <div className="dash-page">
+      <div className="dash-main">
+        
+        <header className="dash-header">
+          <h1 className="dash-title">Seller Dashboard</h1>
           {user && (
-            <span style={{ fontSize: '14px', fontWeight: 'normal', marginLeft: '12px', color: '#8D4F33' }}>
+            <div className="dash-welcome">
               Welcome, {user.full_name}
-            </span>
+            </div>
           )}
-        </h1>
+        </header>
 
         {/* ── SECTION 1: Create / Edit Listing Form ── */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionHeading}>
+        <section className="dash-section">
+          <h2 className="dash-section-heading">
             {editingId ? 'Edit Listing' : 'Create New Listing'}
           </h2>
 
-          <form onSubmit={handleSubmit} style={styles.form}>
-            {generalError && (
-              <p style={styles.generalError}>{generalError}</p>
-            )}
-
-            {/* Pet Name */}
-            <label style={styles.label}>
-              Pet Name *
-              <input
-                style={styles.input}
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                placeholder="e.g. Buddy"
-              />
-              {fieldErrors.name && (
-                <span style={styles.fieldError}>{fieldErrors.name}</span>
+          <div className="dash-form-card">
+            <form onSubmit={handleSubmit} className="dash-form">
+              {generalError && (
+                <div className="dash-general-error">{generalError}</div>
               )}
-            </label>
 
-            {/* Species */}
-            <label style={styles.label}>
-              Species *
-              <input
-                style={styles.input}
-                type="text"
-                name="species"
-                value={form.species}
-                onChange={handleChange}
-                required
-                placeholder="e.g. Dog"
-              />
-              {fieldErrors.species && (
-                <span style={styles.fieldError}>{fieldErrors.species}</span>
-              )}
-            </label>
+              {/* Pet Name */}
+              <label className="dash-label">
+                Pet Name *
+                <input
+                  className="dash-input"
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g. Buddy"
+                />
+                {fieldErrors.name && (
+                  <span className="dash-field-error">{fieldErrors.name}</span>
+                )}
+              </label>
 
-            {/* Breed */}
-            <label style={styles.label}>
-              Breed *
-              <input
-                style={styles.input}
-                type="text"
-                name="breed"
-                value={form.breed}
-                onChange={handleChange}
-                required
-                placeholder="e.g. Golden Retriever"
-              />
-              {fieldErrors.breed && (
-                <span style={styles.fieldError}>{fieldErrors.breed}</span>
-              )}
-            </label>
+              {/* Species */}
+              <label className="dash-label">
+                Species *
+                <input
+                  className="dash-input"
+                  type="text"
+                  name="species"
+                  value={form.species}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g. Dog"
+                />
+                {fieldErrors.species && (
+                  <span className="dash-field-error">{fieldErrors.species}</span>
+                )}
+              </label>
 
-            {/* Age in months */}
-            <label style={styles.label}>
-              Age (months) *
-              <input
-                style={styles.input}
-                type="number"
-                name="age_months"
-                value={form.age_months}
-                onChange={handleChange}
-                required
-                min="1"
-                placeholder="e.g. 6"
-              />
-              {fieldErrors.age_months && (
-                <span style={styles.fieldError}>{fieldErrors.age_months}</span>
-              )}
-            </label>
+              {/* Breed */}
+              <label className="dash-label">
+                Breed *
+                <input
+                  className="dash-input"
+                  type="text"
+                  name="breed"
+                  value={form.breed}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g. Golden Retriever"
+                />
+                {fieldErrors.breed && (
+                  <span className="dash-field-error">{fieldErrors.breed}</span>
+                )}
+              </label>
 
-            {/* Price */}
-            <label style={styles.label}>
-              Price (Br) *
-              <input
-                style={styles.input}
-                type="number"
-                name="price_usd"
-                value={form.price_usd}
-                onChange={handleChange}
-                required
-                min="0.01"
-                step="0.01"
-                placeholder="e.g. 250.00"
-              />
-              {fieldErrors.price_usd && (
-                <span style={styles.fieldError}>{fieldErrors.price_usd}</span>
-              )}
-            </label>
+              {/* Age in months */}
+              <label className="dash-label">
+                Age (months) *
+                <input
+                  className="dash-input"
+                  type="number"
+                  name="age_months"
+                  value={form.age_months}
+                  onChange={handleChange}
+                  required
+                  min="1"
+                  placeholder="e.g. 6"
+                />
+                {fieldErrors.age_months && (
+                  <span className="dash-field-error">{fieldErrors.age_months}</span>
+                )}
+              </label>
 
-            {/* Photo upload */}
-            <label style={styles.label}>
-              Photo (JPEG / PNG / WEBP)
-              <input
-                style={styles.fileInput}
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                onChange={handlePhotoChange}
-              />
-              {photoFileError && (
-                <span style={styles.fieldError}>{photoFileError}</span>
-              )}
-              {form.photo_url && (
-                <img src={form.photo_url} alt="Preview" style={styles.photoPreview} />
-              )}
-            </label>
+              {/* Price */}
+              <label className="dash-label">
+                Price (Br) *
+                <input
+                  className="dash-input"
+                  type="number"
+                  name="price_usd"
+                  value={form.price_usd}
+                  onChange={handleChange}
+                  required
+                  min="0.01"
+                  step="0.01"
+                  placeholder="e.g. 250.00"
+                />
+                {fieldErrors.price_usd && (
+                  <span className="dash-field-error">{fieldErrors.price_usd}</span>
+                )}
+              </label>
 
-            {/* Description */}
-            <label style={{ ...styles.label, ...styles.formFullRow }}>
-              Description (max 500 chars)
-              <textarea
-                style={styles.textarea}
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                maxLength={500}
-                placeholder="Tell buyers about this pet…"
-              />
-              <span style={{ fontSize: '11px', color: '#8D4F33', textAlign: 'right' }}>
-                {form.description.length}/500
-              </span>
-              {fieldErrors.description && (
-                <span style={styles.fieldError}>{fieldErrors.description}</span>
-              )}
-            </label>
+              {/* Photo upload */}
+              <label className="dash-label">
+                Photo (JPEG / PNG / WEBP)
+                <input
+                  className="dash-file-input"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={handlePhotoChange}
+                />
+                {photoFileError && (
+                  <span className="dash-field-error">{photoFileError}</span>
+                )}
+                {form.photo_url && (
+                  <img src={form.photo_url} alt="Preview" className="dash-photo-preview" />
+                )}
+              </label>
 
-            {/* Actions */}
-            <div style={styles.formActions}>
-              <button style={styles.submitBtn} type="submit" disabled={submitting}>
-                {submitting ? 'Saving…' : editingId ? 'Update Listing' : 'Create Listing'}
-              </button>
-              {editingId && (
-                <button
-                  style={styles.cancelBtn}
-                  type="button"
-                  onClick={cancelEdit}
-                >
-                  Cancel
+              {/* Description */}
+              <label className="dash-label dash-form-full">
+                Description (max 500 chars)
+                <textarea
+                  className="dash-textarea"
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                  maxLength={500}
+                  placeholder="Tell buyers about this pet…"
+                />
+                <span className="dash-char-count">
+                  {form.description.length}/500
+                </span>
+                {fieldErrors.description && (
+                  <span className="dash-field-error">{fieldErrors.description}</span>
+                )}
+              </label>
+
+              {/* Actions */}
+              <div className="dash-form-actions">
+                <button className="dash-submit-btn" type="submit" disabled={submitting}>
+                  {submitting ? 'Saving…' : editingId ? 'Update Listing' : 'Create Listing'}
                 </button>
-              )}
-            </div>
-          </form>
+                {editingId && (
+                  <button
+                    className="dash-cancel-btn"
+                    type="button"
+                    onClick={cancelEdit}
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
         </section>
 
         {/* ── SECTION 2: My Listings Table ── */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionHeading}>My Listings</h2>
+        <section className="dash-section">
+          <h2 className="dash-section-heading">My Listings</h2>
 
-          {loadingListings ? (
-            <p style={styles.emptyMsg}>Loading listings…</p>
-          ) : listings.length === 0 ? (
-            <p style={styles.emptyMsg}>No listings yet.</p>
-          ) : (
-            <table style={styles.table}>
-              <thead>
-                <tr>
-                  <th style={styles.th}>Photo</th>
-                  <th style={styles.th}>Name</th>
-                  <th style={styles.th}>Species</th>
-                  <th style={styles.th}>Breed</th>
-                  <th style={styles.th}>Age</th>
-                  <th style={styles.th}>Price</th>
-                  <th style={styles.th}>Status</th>
-                  <th style={styles.th}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {listings.map((listing, idx) => {
-                  const td = idx % 2 === 0 ? styles.tdEven : styles.tdOdd
-                  return (
+          <div className="dash-table-wrap">
+            {loadingListings ? (
+              <div className="dash-empty" style={{padding: '24px'}}>Loading listings…</div>
+            ) : listings.length === 0 ? (
+              <div className="dash-empty" style={{padding: '24px'}}>No listings yet.</div>
+            ) : (
+              <table className="dash-table">
+                <thead>
+                  <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Breed</th>
+                    <th>Age</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {listings.map((listing) => (
                     <tr key={listing.id}>
-                      <td style={td}>
+                      <td>
                         {listing.photo_url ? (
                           <img
                             src={listing.photo_url}
                             alt={listing.name}
-                            style={styles.thumbnail}
+                            className="dash-thumbnail"
                           />
                         ) : (
-                          <div style={styles.thumbnailPlaceholder}>No photo</div>
+                          <div className="dash-thumbnail-placeholder">🐶</div>
                         )}
                       </td>
-                      <td style={td}>{listing.name}</td>
-                      <td style={td}>{listing.species}</td>
-                      <td style={td}>{listing.breed}</td>
-                      <td style={td}>{listing.age_months} mo</td>
-                      <td style={td}>{formatPrice(listing.price_usd)}</td>
-                      <td style={td}>
-                        <span
-                          style={{
-                            padding: '3px 8px',
-                            borderRadius: '12px',
-                            fontSize: '11px',
-                            background:
-                              listing.status === 'active'
-                                ? '#d4edda'
-                                : listing.status === 'sold'
-                                ? '#fff3cd'
-                                : '#f8d7da',
-                            color:
-                              listing.status === 'active'
-                                ? '#155724'
-                                : listing.status === 'sold'
-                                ? '#856404'
-                                : '#721c24',
-                          }}
-                        >
+                      <td style={{fontWeight: '600'}}>{listing.name}</td>
+                      <td>{listing.species}</td>
+                      <td>{listing.breed}</td>
+                      <td>{listing.age_months} mo</td>
+                      <td style={{fontWeight: '600', color: '#8D4F33'}}>{formatPrice(listing.price_usd)}</td>
+                      <td>
+                        <span className={`dash-badge dash-badge-${listing.status || 'default'}`}>
                           {listing.status}
                         </span>
                       </td>
-                      <td style={td}>
+                      <td>
                         <button
-                          style={styles.editBtn}
+                          className="dash-edit-btn"
                           onClick={() => populateFormForEdit(listing)}
                         >
                           Edit
                         </button>
                         <button
-                          style={styles.deleteBtn}
+                          className="dash-delete-btn"
                           onClick={() => handleDelete(listing.id)}
                         >
                           Delete
                         </button>
                       </td>
                     </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          )}
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </section>
 
         {/* ── SECTION 3: My Orders Table ── */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionHeading}>My Orders</h2>
+        <section className="dash-section">
+          <h2 className="dash-section-heading">My Orders</h2>
 
-          {loadingOrders ? (
-            <p style={styles.emptyMsg}>Loading orders…</p>
-          ) : orders.length === 0 ? (
-            <p style={styles.emptyMsg}>No orders yet.</p>
-          ) : (
-            <table style={styles.table}>
-              <thead>
-                <tr>
-                  <th style={styles.th}>Pet Name</th>
-                  <th style={styles.th}>Price</th>
-                  <th style={styles.th}>Date</th>
-                  <th style={styles.th}>Buyer Name</th>
-                  <th style={styles.th}>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order, idx) => {
-                  const td = idx % 2 === 0 ? styles.tdEven : styles.tdOdd
-                  return (
+          <div className="dash-table-wrap">
+            {loadingOrders ? (
+              <div className="dash-empty" style={{padding: '24px'}}>Loading orders…</div>
+            ) : orders.length === 0 ? (
+              <div className="dash-empty" style={{padding: '24px'}}>No orders yet.</div>
+            ) : (
+              <table className="dash-table">
+                <thead>
+                  <tr>
+                    <th>Pet Name</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Buyer Name</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
                     <tr key={order.id}>
-                      <td style={td}>{order.pet_name || '—'}</td>
-                      <td style={td}>{formatPrice(order.price_paid ?? order.price)}</td>
-                      <td style={td}>{formatDate(order.created_at)}</td>
-                      <td style={td}>{order.buyer_name || '—'}</td>
-                      <td style={td}>
-                        <span
-                          style={{
-                            padding: '3px 8px',
-                            borderRadius: '12px',
-                            fontSize: '11px',
-                            background:
-                              order.status === 'paid'
-                                ? '#d4edda'
-                                : order.status === 'failed'
-                                ? '#f8d7da'
-                                : '#e2e3e5',
-                            color:
-                              order.status === 'paid'
-                                ? '#155724'
-                                : order.status === 'failed'
-                                ? '#721c24'
-                                : '#383d41',
-                          }}
-                        >
+                      <td style={{fontWeight: '600'}}>{order.pet_name || '—'}</td>
+                      <td style={{fontWeight: '600', color: '#8D4F33'}}>{formatPrice(order.price_paid ?? order.price)}</td>
+                      <td>{formatDate(order.created_at)}</td>
+                      <td>{order.buyer_name || '—'}</td>
+                      <td>
+                        <span className={`dash-badge dash-badge-${order.status || 'default'}`}>
                           {order.status}
                         </span>
                       </td>
                     </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          )}
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </section>
       </div>
 
