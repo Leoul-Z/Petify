@@ -1,6 +1,5 @@
 <?php
 
-// 0. Load environment variables from .env
 require_once __DIR__ . '/utils/env.php';
 load_env(__DIR__ . '/.env');
 
@@ -9,14 +8,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 2. CORS headers — add your Render frontend URL to FRONTEND_URL env var
+// 2. CORS headers
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-$allowed = array_filter([
+$allowed = [
     'http://localhost:5173',
     'http://localhost:5174',
     'http://localhost:5175',
-    getenv('FRONTEND_URL') ?: '', // e.g. https://petify.onrender.com
-]);
+    'https://petify-plum.vercel.app',
+];
 if (in_array($origin, $allowed)) {
     header('Access-Control-Allow-Origin: ' . $origin);
 }

@@ -1,9 +1,4 @@
 <?php
-
-/**
- * Minimal .env loader — no Composer dependency required.
- * Reads KEY=VALUE pairs and injects them into getenv() / $_ENV / $_SERVER.
- */
 function load_env(string $path): void {
     if (!file_exists($path)) return;
 
