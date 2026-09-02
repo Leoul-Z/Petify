@@ -4,6 +4,15 @@ require_once __DIR__ . '/utils/env.php';
 load_env(__DIR__ . '/.env');
 
 // 1. Session
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'None',
+]);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
